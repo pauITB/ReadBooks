@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:id="@+id/nav_host_fragment"
     tools:context=".Activities.MainActivity"
+    android:name="androidx.navigation.fragment.NavHostFragment"
+    app:navGraph="@navigation/navigation_graph"
+    app:defaultNavHost="true"
     android:background="@color/colorPrimary">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBooks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:layout_centerHorizontal="true">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 
-</RelativeLayout>
+
+</fragment>

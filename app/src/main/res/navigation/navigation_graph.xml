@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
+    app:startDestination="@id/booksGridFragment">
+
+    <fragment
+        android:id="@+id/booksGridFragment"
+        android:name="cat.itb.readbooks.Activities.BooksGridFragment"
+        android:label="BooksGridFragment" >
+        <action
+            android:id="@+id/action_booksGridFragment_to_editBookFragment"
+            app:destination="@id/editBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editBookFragment"
+        android:name="cat.itb.readbooks.Activities.EditBookFragment"
+        android:label="EditBookFragment" />
+</navigation>
