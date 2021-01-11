@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/book_title"
         android:layout_width="match_parent"
-        android:textStyle="italic"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
+        android:textStyle="italic"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
 
