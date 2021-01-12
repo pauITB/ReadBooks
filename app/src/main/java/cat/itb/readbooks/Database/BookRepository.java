@@ -27,7 +27,7 @@ public class BookRepository {
         bookDao.delete(book);
     }
 
-    public void update(int id, int stars){
+    public void update(int id, float stars){
         bookDao.update(id, stars);
     }
 }

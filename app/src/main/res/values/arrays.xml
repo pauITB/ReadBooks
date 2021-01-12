@@ -2,5 +2,9 @@
 <resources>
     <string-array name="books_status">
         <item>Plan to read</item>
+        <item>Reading</item>
+        <item>Read</item>
+        <item>On hold</item>
+        <item>Dropped</item>
     </string-array>
 </resources>

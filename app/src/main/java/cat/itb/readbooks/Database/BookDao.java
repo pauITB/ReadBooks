@@ -22,7 +22,7 @@ public interface BookDao {
     public void update(int id, String status);
 
     @Query("Update book set stars =:score where id =:id")
-    public void update(int id, int score);
+    public void update(int id, float score);
 
     @Delete
     public void delete(Book book);

@@ -18,6 +18,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import cat.itb.readbooks.Adapters.MyBooksAdapter;
@@ -35,6 +37,7 @@ public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemCl
     MyBooksAdapter adapter;
     RecyclerView recyclerView;
     List<Book> books;
+    FloatingActionButton addButton;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,7 @@ public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemCl
         View v = inflater.inflate(R.layout.books_grid_fragment,container,false);
         books = repository.getAll();
         if (books.isEmpty()){
-            repository.insert(new Book("Caperucita","Nadie","plan to read"));
+            repository.insert(new Book("Caperucita","Nadie","Plan to read"));
             repository.insert(new Book("La historia interminable","Alguien","Reading"));
             books= repository.getAll();
         }
@@ -66,14 +69,19 @@ public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemCl
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        books = repository.getAll();
+        adapter.setBooks(books);
+    }
+
+    @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this.getContext(),""+position,Toast.LENGTH_SHORT).show();
         NavDirections directions = BooksGridFragmentDirections.actionBooksGridFragmentToEditBookFragment(books.get(position));
         Navigation.findNavController(view).navigate(directions);
 
 //        repository.delete(books.get(position));
-//        books=repository.getAll();
-//        adapter.setBooks(books);
     }
 
     @Override
@@ -119,6 +127,7 @@ public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemCl
             default:
                 return super.onContextItemSelected(item);
         }
+
 
     }
 }

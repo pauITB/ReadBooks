@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_booksGridFragment_to_editBookFragment"
             app:destination="@id/editBookFragment" />
+        <action
+            android:id="@+id/action_booksGridFragment_to_addBookFragment"
+            app:destination="@id/addBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/editBookFragment"
@@ -19,4 +22,8 @@
             android:name="Book"
             app:argType="cat.itb.readbooks.Models.Book" />
     </fragment>
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="cat.itb.readbooks.Activities.AddBookFragment"
+        android:label="AddBookFragment" />
 </navigation>
