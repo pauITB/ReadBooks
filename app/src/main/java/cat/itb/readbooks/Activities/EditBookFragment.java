@@ -18,12 +18,11 @@ import androidx.fragment.app.Fragment;
 import cat.itb.readbooks.Database.AppDatabase;
 import cat.itb.readbooks.Database.BookDao;
 import cat.itb.readbooks.Database.BookRepository;
+import cat.itb.readbooks.Database.Database;
 import cat.itb.readbooks.Models.Book;
 import cat.itb.readbooks.R;
 
 public class EditBookFragment extends Fragment {
-    AppDatabase db;
-    BookDao dao;
     BookRepository repository;
 
     TextView titulo;
@@ -34,9 +33,8 @@ public class EditBookFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = AppDatabase.getInstance(this.getContext());
-        dao =db.bookDao();
-        repository = new BookRepository(dao);
+        Database database = new Database();
+        repository = database.getRepository(this.getContext());
     }
 
 
@@ -90,10 +88,12 @@ public class EditBookFragment extends Fragment {
                 public void onClick(View v) {
                     repository.update(book.getId(),starsBar.getRating());
                     repository.update(book.getId(),statusSpinner.getSelectedItem().toString());
+                    getActivity().onBackPressed();
                 }
             });
         }
 
         return v;
     }
+
 }

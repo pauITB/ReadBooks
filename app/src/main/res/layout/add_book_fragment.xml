@@ -51,7 +51,7 @@
 
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/add_button"
         android:text="@string/add_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
