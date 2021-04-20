@@ -36,7 +36,8 @@ public class EditBookFragment extends Fragment {
         Database database = new Database();
         repository = database.getRepository(this.getContext());
     }
-
+    //TODO Meter boton para borrar libros
+    // repository.delete(book);
 
     @Nullable
     @Override
