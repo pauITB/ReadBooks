@@ -2,6 +2,8 @@ package cat.itb.readbooks.Activities;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -23,10 +25,30 @@ public class LogInFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_log_in, container, false);
+        username = v.findViewById(R.id.username_login);
+        password = v.findViewById(R.id.password_login);
+        register = v.findViewById(R.id.login_register_button);
+        login = v.findViewById(R.id.login_button_login);
+
+
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean allRight = true;
                 if(username.getEditText().getText().toString().equals("")){
                     username.setError("Camp obligatori");
                 }
@@ -35,10 +57,11 @@ public class LogInFragment extends Fragment {
                     if(password.getEditText().getText().length() < 7) {
                         password.setError("Contrasenya curta");
                     }
+
                 } else {
                     password.setError("Camp obligatori");
                 }
-                if(allRight){
+                if(!username.getEditText().getText().toString().equals("") && !password.getEditText().getText().toString().equals("") ){
                     NavDirections directions = LogInFragmentDirections.actionLogInFragmentToBooksGridFragment();
                     Navigation.findNavController(v).navigate(directions);
                 }
@@ -51,17 +74,5 @@ public class LogInFragment extends Fragment {
                 Navigation.findNavController(v).navigate(directions);
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_register, container, false);
-        username = v.findViewById(R.id.username_register);
-        password = v.findViewById(R.id.password_register);
-        register = v.findViewById(R.id.login_register_button);
-        login = v.findViewById(R.id.login_button);
-        return v;
     }
 }
