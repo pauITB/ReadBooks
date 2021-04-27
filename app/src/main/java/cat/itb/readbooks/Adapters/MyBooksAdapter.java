@@ -21,6 +21,15 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     private List<Book> books;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    Context context;
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     public List<Book> getBooks() {
         return books;
@@ -50,6 +59,7 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     public MyBooksAdapter(Context context, List<Book> books) {
         this.books = books;
         this.mInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @NonNull
@@ -71,6 +81,11 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
         return books.size();
     }
 
+    public void deleteItem(int position) {
+        books.remove(position);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
         TextView bookTitle;
         TextView bookAuthor;
@@ -83,6 +98,7 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
             bookAuthor = itemView.findViewById(R.id.book_author);
             status = itemView.findViewById(R.id.status);
             itemView.setOnClickListener(this);
+
         }
 
         @Override

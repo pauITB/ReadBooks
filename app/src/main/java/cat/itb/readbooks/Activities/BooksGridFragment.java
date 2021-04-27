@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,6 +23,7 @@ import cat.itb.readbooks.Database.BookRepository;
 import cat.itb.readbooks.Database.Database;
 import cat.itb.readbooks.Models.Book;
 import cat.itb.readbooks.R;
+import cat.itb.readbooks.SwipeToDeleteCallBack;
 
 public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemClickListener {
 
@@ -53,9 +55,10 @@ public class BooksGridFragment extends Fragment implements MyBooksAdapter.ItemCl
         floatingActionButton = v.findViewById(R.id.floatingActionButton);
         int numOfColumns= 2;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(),numOfColumns));
-
         adapter = new MyBooksAdapter(this.getContext(),books);
         adapter.setClickListener(this);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallBack(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
